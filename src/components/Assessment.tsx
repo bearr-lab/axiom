@@ -56,7 +56,7 @@ export function Assessment() {
       </aside>
 
       {/* Main Content */}
-      <section className="flex-1 flex flex-col relative pb-24">
+      <section className="flex-1 flex flex-col relative pb-32 lg:pb-40">
         {/* Mobile Progress Bar (visible only on small screens) */}
         <div className="lg:hidden w-full h-1 bg-accent">
           <div className="h-full bg-primary transition-all duration-1000" style={{ width: `${Math.min(100, lockedCount * 9)}%` }} />
@@ -64,13 +64,13 @@ export function Assessment() {
         
         <div className="p-3 sm:p-6 md:p-10 max-w-4xl mx-auto w-full flex-1 flex flex-col">
           <div className="flex flex-col gap-3 mb-6 animate-in fade-in slide-in-from-top-4 duration-500">
-            <div className="flex items-center flex-wrap gap-2">
-              <p className="text-primary font-bold tracking-widest uppercase text-[10px] sm:text-xs">
+            <div className="flex items-center flex-wrap gap-3">
+              <p className="text-primary font-bold tracking-widest uppercase text-xs">
                 {item.missionTitle} <span className="opacity-50 mx-1">·</span> Class {session.profile?.classLevel}
               </p>
-              <span className="text-[10px] font-mono bg-accent text-accent-foreground px-2 py-0.5 rounded-full whitespace-nowrap">Untimed</span>
+              <span className="text-xs font-mono bg-accent text-accent-foreground px-3 py-1 rounded-full whitespace-nowrap">Untimed</span>
             </div>
-            <h1 className="text-xl sm:text-3xl md:text-4xl font-semibold leading-tight text-foreground/95">{item.prompt}</h1>
+            <h1 className="text-xl sm:text-3xl md:text-4xl font-medium leading-snug text-foreground/95">{item.prompt}</h1>
           </div>
 
           <p className="p-3 sm:p-5 text-sm sm:text-base bg-primary/5 border-l-2 border-primary rounded-r-xl text-card-foreground leading-relaxed mb-6 animate-in fade-in duration-700 delay-150 fill-mode-both">
@@ -106,7 +106,7 @@ export function Assessment() {
         <footer className="fixed bottom-0 left-0 right-0 lg:left-64 xl:left-72 z-10 flex items-center justify-between p-3 sm:p-4 sm:px-8 border-t border-border bg-background/90 backdrop-blur-xl shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
           <span className="text-sm sm:text-base text-muted-foreground">
             Response <strong className="text-foreground">{lockedCount + 1}</strong>
-            <span className="hidden sm:inline text-xs ml-2 opacity-60">· saved when locked</span>
+            <span className="hidden sm:inline text-xs ml-2 text-muted-foreground/80">· saved when locked</span>
           </span>
           <Button disabled={!selected} onClick={lock} size="lg" className="group h-10 sm:h-12 px-4 sm:px-8 ml-2">
             Lock response 

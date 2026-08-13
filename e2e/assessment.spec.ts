@@ -18,6 +18,9 @@ for (const viewport of viewportCases) {
     await expect(disclosure).toBeVisible();
     await expect(submit).toBeInViewport();
     await expect(disclosure).toBeInViewport();
+    const headingColor = await page.getByRole('heading', { name: 'AXIOM' }).evaluate((element) => getComputedStyle(element).color);
+    const brandColor = await page.locator('.wordmark').evaluate((element) => getComputedStyle(element).color);
+    expect(headingColor).toBe(brandColor);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }

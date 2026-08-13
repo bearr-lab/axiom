@@ -80,7 +80,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function isProfile(value: unknown): value is LearnerProfile {
-  return isRecord(value) && typeof value.name === 'string' && Number.isInteger(value.classLevel) && value.classLevel >= 3 && value.classLevel <= 12;
+  return isRecord(value) && typeof value.name === 'string' && typeof value.classLevel === 'number' && Number.isInteger(value.classLevel) && value.classLevel >= 3 && value.classLevel <= 12;
 }
 
 function isItemResponse(value: unknown): value is ItemResponse {

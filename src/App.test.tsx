@@ -7,5 +7,7 @@ describe('AXIOM application shell', () => {
 
     expect(screen.getByRole('heading', { name: /AXIOM/i })).toBeInTheDocument();
     expect(screen.getByText(/learning signal/i)).toBeInTheDocument();
+    expect(screen.getByTestId('onboarding-shell')).toBeInTheDocument();
+    expect(screen.getByTestId('onboarding-submit')).toHaveTextContent(/begin calibration/i);
   });
 });

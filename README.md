@@ -2,11 +2,13 @@
 
 AXIOM is a browser-only, offline-first STEAM competency assessment for Classes 3-12. It uses linked, fictional systems scenarios to generate a transparent **projected benchmark** from provisional class-and-competency reference distributions.
 
+The interface uses Tailwind CSS v4 and shadcn/ui’s `base-lyra` preset. Its canonical light and dark OKLCH tokens are defined in `src/styles/global.css`; AXIOM loads the dark token scope by default.
+
 ## Run locally
 
 ```powershell
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 Open the displayed local address. There is no account, backend, network API, database, or telemetry. The application works from its bundled content after its first local load.
@@ -22,13 +24,13 @@ Scores use provisional expert-authored reference distributions for the selected 
 ## Verify
 
 ```powershell
-npm test -- --run
-npm run build
-npm run e2e -- --project=chromium
+pnpm test -- --run
+pnpm run build
+pnpm run e2e -- --project=chromium
 ```
 
 If Chromium is not installed for Playwright, run:
 
 ```powershell
-npx playwright install chromium
+pnpm exec playwright install chromium
 ```

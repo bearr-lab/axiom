@@ -5,5 +5,36 @@ const labels = { scientificReasoning: 'Science', quantitativeReasoning: 'Quant',
 
 export function CompetencyChart({ snapshot }: { snapshot: ResultSnapshot }) {
   const data = COMPETENCIES.map((competency) => ({ name: labels[competency], score: snapshot.competencies[competency].score }));
-  return <section className="chart-panel" aria-label="Competency projected scores"><h2>Competency signal map</h2><div className="chart-frame"><ResponsiveContainer width="100%" height={240}><BarChart data={data}><CartesianGrid stroke="#29414b" vertical={false} /><XAxis dataKey="name" stroke="#9cb3bb" /><YAxis domain={[100, 900]} stroke="#9cb3bb" /><Tooltip /><Bar dataKey="score" fill="#67e8f9" radius={[3, 3, 0, 0]} /></BarChart></ResponsiveContainer></div><ul className="sr-values">{data.map((point) => <li key={point.name}>{point.name}: {point.score}</li>)}</ul></section>;
+  
+  return (
+    <section className="col-span-1 p-6 sm:p-8 bg-card/40 backdrop-blur-md border border-border rounded-3xl shadow-lg hover:shadow-primary/5 transition-all animate-in slide-in-from-right-4 duration-500 delay-100 fill-mode-both" aria-label="Competency projected scores">
+      <h2 className="text-xl font-bold mb-8 flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-primary" /> 
+        Competency signal map
+      </h2>
+      <div className="w-full h-64 sm:h-72">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+            <CartesianGrid stroke="var(--color-border)" strokeOpacity={0.4} vertical={false} />
+            <XAxis dataKey="name" stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+            <YAxis domain={[100, 900]} stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+            <Tooltip 
+              cursor={{ fill: 'var(--color-accent)' }}
+              contentStyle={{ backgroundColor: 'var(--color-card)', borderColor: 'var(--color-border)', borderRadius: '0.75rem', color: 'var(--color-foreground)' }} 
+              itemStyle={{ color: 'var(--color-primary)', fontWeight: 'bold' }}
+            />
+            <Bar dataKey="score" fill="#a855f7" radius={[6, 6, 0, 0]} maxBarSize={60} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <ul className="mt-6 flex flex-wrap gap-4 text-xs text-muted-foreground justify-center">
+        {data.map((point) => (
+          <li key={point.name} className="flex items-center gap-1.5 bg-background/50 px-3 py-1.5 rounded-full border border-border">
+            <span className="font-semibold text-foreground/80">{point.name}</span>
+            <span className="text-primary font-mono">{point.score}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }

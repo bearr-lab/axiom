@@ -83,3 +83,17 @@ export interface AssessmentPlan {
   missionIds: readonly string[];
   missionItems: readonly AssessmentItem[];
 }
+
+export interface LearnerProfile {
+  name: string;
+  classLevel: number;
+}
+
+export interface AxiomSession {
+  version: 1;
+  phase: 'onboarding' | 'assessment' | 'results';
+  profile?: LearnerProfile;
+  plan?: AssessmentPlan;
+  responses: Readonly<Record<string, ItemResponse>>;
+  result?: ResultSnapshot;
+}

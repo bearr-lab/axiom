@@ -11,7 +11,7 @@ export function Dashboard({ snapshot, onNew, onErase }: { snapshot: ResultSnapsh
   return (
     <main className="w-full max-w-7xl mx-auto h-full flex flex-col gap-3 p-3 sm:p-5 md:p-8 animate-in fade-in duration-700 overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 flex-1 min-h-0">
-        <section className="group col-span-1 flex flex-col justify-center p-4 sm:p-6 bg-card/40 backdrop-blur-3xl border border-white/5 shadow-2xl hover:shadow-[0_0_40px_rgba(var(--primary),0.15)] hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 animate-in slide-in-from-left-4 relative overflow-hidden">
+        <section className="group col-span-1 flex flex-col justify-center p-4 sm:p-6 bg-card/40 backdrop-blur-3xl border border-white/5 shadow-2xl hover:shadow-primary/15 hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 animate-in slide-in-from-left-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-br from-primary/10 to-transparent pointer-events-none group-hover:from-primary/20 transition-colors duration-500" />
         <p className="text-primary font-bold tracking-widest uppercase text-xs mb-4 relative z-10">Projected benchmark</p>
         <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-2 bg-clip-text text-transparent bg-linear-to-br from-foreground to-foreground/40 relative z-10 leading-none">
@@ -23,8 +23,8 @@ export function Dashboard({ snapshot, onNew, onErase }: { snapshot: ResultSnapsh
 
       <CompetencyChart snapshot={snapshot} />
 
-      <section className="group col-span-1 lg:col-span-1 flex flex-col min-h-0 p-4 sm:p-5 bg-card/40 backdrop-blur-2xl border border-white/5 shadow-xl hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 animate-in slide-in-from-bottom-4 delay-200 fill-mode-both">
-        <h2 className="font-heading text-base sm:text-lg font-bold mb-3 flex items-center gap-2 shrink-0"><span className="w-2 h-2 bg-primary shadow-[0_0_10px_rgba(var(--primary),0.5)] group-hover:shadow-[0_0_15px_rgba(var(--primary),0.8)] transition-shadow duration-500" /> Decision evidence</h2>
+      <section className="group col-span-1 lg:col-span-1 flex flex-col min-h-0 p-4 sm:p-5 bg-card/40 backdrop-blur-2xl border border-white/5 shadow-xl hover:shadow-primary/10 hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 animate-in slide-in-from-bottom-4 delay-200 fill-mode-both">
+        <h2 className="font-heading text-base sm:text-lg font-bold mb-3 flex items-center gap-2 shrink-0"><span className="w-2 h-2 bg-primary shadow-md shadow-primary/50 group-hover:shadow-lg group-hover:shadow-primary/80 transition-shadow duration-500" /> Decision evidence</h2>
         <div className="overflow-auto flex-1 min-h-0 pr-2">
           <table className="w-full text-left text-sm">
             <thead>

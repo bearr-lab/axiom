@@ -16,6 +16,12 @@ describe('AXIOM learner flow', () => {
     await user.click(screen.getByRole('radio', { name: /measure temperature at the bay/i }));
 
     expect(screen.getByRole('button', { name: /lock response/i })).toBeEnabled();
+    await user.click(screen.getByRole('button', { name: /lock response/i }));
+    
+    expect(screen.getByRole('button', { name: /undo last/i })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /undo last/i }));
+    
+    expect(screen.queryByRole('button', { name: /undo last/i })).not.toBeInTheDocument();
     expect(screen.getByTestId('assessment-shell')).toBeInTheDocument();
     expect(screen.getByText(/saved locally/i)).toBeInTheDocument();
   });

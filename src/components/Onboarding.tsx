@@ -9,7 +9,7 @@ export function Onboarding() {
   const begin = (event: FormEvent) => { event.preventDefault(); setProfile({ name: name.trim() || 'Learner', classLevel: Number(classLevel) }); };
 
   return (
-    <main className="flex flex-col flex-1 w-full h-full items-center justify-center p-4 sm:p-6 overflow-hidden relative" data-testid="onboarding-shell">
+    <main className="flex flex-col flex-1 w-full h-full items-center justify-center p-4 sm:p-6 overflow-x-hidden overflow-y-auto relative" data-testid="onboarding-shell">
       {/* Background glow effects */}
       <div className="absolute top-0 left-0 w-[50vw] h-[50vw] bg-primary/15 blur-[120px] -z-10 pointer-events-none translate-x-[-20%] translate-y-[-20%]" />
       <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] bg-ring/15 blur-[100px] -z-10 pointer-events-none translate-x-[20%] translate-y-[20%]" />

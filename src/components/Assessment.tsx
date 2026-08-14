@@ -21,7 +21,20 @@ export function Assessment() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || !item) return;
+      if (
+        e.defaultPrevented ||
+        e.ctrlKey ||
+        e.metaKey ||
+        e.altKey ||
+        (e.target instanceof HTMLElement && (
+          e.target.tagName === 'INPUT' ||
+          e.target.tagName === 'TEXTAREA' ||
+          e.target.tagName === 'BUTTON' ||
+          e.target.tagName === 'SELECT' ||
+          e.target.closest('[contenteditable="true"]')
+        )) ||
+        !item
+      ) return;
       const key = e.key.toLowerCase();
       const index = ['a', 'b', 'c', 'd'].indexOf(key) !== -1 ? ['a', 'b', 'c', 'd'].indexOf(key) : ['1', '2', '3', '4'].indexOf(key);
       if (index !== -1 && item.options[index]) {
@@ -108,10 +121,11 @@ export function Assessment() {
           <fieldset className="grid grid-cols-1 md:grid-cols-2 gap-3" aria-label="Response options">
             {item.options.map((option, index) => {
               const isSelected = selectedOptionId === option.id;
+              const delayClass = ['delay-200', 'delay-300', 'delay-400', 'delay-500'][index] || 'delay-500';
               return (
                 <label 
                   key={option.id}
-                  className={`group relative flex items-start gap-5 p-5 text-left transition-all duration-300 border-2 cursor-pointer hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/5 animate-in fade-in slide-in-from-bottom-4 fill-mode-both delay-${200 + index * 100} overflow-hidden
+                  className={`group relative flex items-start gap-5 p-5 text-left transition-all duration-300 border-2 cursor-pointer hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/5 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 animate-in fade-in slide-in-from-bottom-4 fill-mode-both ${delayClass} overflow-hidden
                     ${isSelected 
                       ? 'border-primary bg-primary/10 shadow-[0_0_30px_rgba(var(--primary),0.2)]' 
                       : 'border-border/50 bg-card/40 backdrop-blur-sm hover:border-primary/50'}`}

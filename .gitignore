@@ -11,3 +11,7 @@ playwright.config.js
 playwright.config.d.ts
 test-results/
 playwright-report/
+
+.impeccable/
+.superdesign/
+.env.local

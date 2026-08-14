@@ -7,13 +7,13 @@ export function CompetencyChart({ snapshot }: { snapshot: ResultSnapshot }) {
   const data = COMPETENCIES.map((competency) => ({ name: labels[competency], score: snapshot.competencies[competency].score }));
   
   return (
-    <section className="col-span-1 p-6 sm:p-8 bg-card/40 backdrop-blur-md border border-border rounded-3xl shadow-lg hover:shadow-primary/5 transition-all animate-in slide-in-from-right-4 duration-500 delay-100 fill-mode-both" aria-label="Competency projected scores">
+    <section className="col-span-1 flex flex-col min-h-0 p-6 sm:p-8 bg-card/40 backdrop-blur-md border border-border shadow-lg hover:shadow-primary/5 transition-all animate-in slide-in-from-right-4 duration-500 delay-100 fill-mode-both" aria-label="Competency projected scores">
       <h2 className="text-xl font-bold mb-8 flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-primary" /> 
+        <span className="w-2 h-2 bg-primary" /> 
         Competency signal map
       </h2>
-      <div className="w-full h-64 sm:h-72">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="flex-1 min-h-0 overflow-auto w-full max-w-sm mx-auto mb-6 relative">
+        <ResponsiveContainer width="100%" height="100%" minHeight={200}>
           <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <CartesianGrid stroke="var(--color-border)" strokeOpacity={0.4} vertical={false} />
             <XAxis dataKey="name" stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
@@ -29,7 +29,7 @@ export function CompetencyChart({ snapshot }: { snapshot: ResultSnapshot }) {
       </div>
       <ul className="mt-6 flex flex-wrap gap-4 text-xs text-muted-foreground justify-center">
         {data.map((point) => (
-          <li key={point.name} className="flex items-center gap-1.5 bg-background/50 px-3 py-1.5 rounded-full border border-border">
+          <li key={point.name} className="flex items-center gap-1.5 bg-background/50 px-3 py-1.5 rounded-none border border-border">
             <span className="font-semibold text-foreground/80">{point.name}</span>
             <span className="text-primary font-mono">{point.score}</span>
           </li>

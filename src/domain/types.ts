@@ -91,7 +91,7 @@ export interface LearnerProfile {
 
 export interface AxiomSession {
   version: 1;
-  phase: 'onboarding' | 'assessment' | 'results';
+  phase: 'landing' | 'onboarding' | 'assessment' | 'results';
   profile?: LearnerProfile;
   plan?: AssessmentPlan;
   responses: Readonly<Record<string, ItemResponse>>;

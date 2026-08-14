@@ -2,12 +2,11 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 
 describe('AXIOM application shell', () => {
-  it('renders the AXIOM learning-signal boot state', () => {
+  it('renders the AXIOM landing page on boot', () => {
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: /AXIOM/i })).toBeInTheDocument();
-    expect(screen.getByText(/learning signal/i)).toBeInTheDocument();
-    expect(screen.getByTestId('onboarding-shell')).toBeInTheDocument();
-    expect(screen.getByTestId('onboarding-submit')).toHaveTextContent(/begin calibration/i);
+    expect(screen.getByRole('heading', { name: /know where you/i })).toBeInTheDocument();
+    expect(screen.getByTestId('landing-shell')).toBeInTheDocument();
+    expect(screen.getByTestId('landing-cta')).toHaveTextContent(/start your benchmark/i);
   });
 });

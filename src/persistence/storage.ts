@@ -1,8 +1,10 @@
 import { createSession, sessionReducer } from '../domain/session';
 import type { AxiomSession, ItemResponse, LearnerProfile } from '../domain/types';
 
+
 export const SESSION_KEY = 'axiom.session.v1';
 export const PROFILE_KEY = 'axiom.profile.v1';
+export const SESSION_ID_KEY = 'axiom.session_id.v1';
 
 export interface StorageLike {
   getItem(key: string): string | null;
@@ -17,10 +19,12 @@ export interface LoadResult {
   recovered: boolean;
 }
 
+
 export function saveSession(session: AxiomSession, storage: StorageLike): PersistenceStatus {
   try {
     storage.setItem(SESSION_KEY, JSON.stringify(session));
     if (session.profile) storage.setItem(PROFILE_KEY, JSON.stringify(session.profile));
+    
     return { state: 'saved' };
   } catch {
     return { state: 'unavailable', message: 'Local save is unavailable in this browser.' };
@@ -46,6 +50,7 @@ export function loadSession(storage: StorageLike): LoadResult {
 export function resetSession(storage: StorageLike): void {
   safelyRemove(storage, SESSION_KEY);
   safelyRemove(storage, PROFILE_KEY);
+  safelyRemove(storage, SESSION_ID_KEY);
 }
 
 function migrateAndHydrate(value: unknown, fallbackProfile?: LearnerProfile): AxiomSession | null {

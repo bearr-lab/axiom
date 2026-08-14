@@ -11,9 +11,9 @@ describe('sessionReducer', () => {
     expect(Object.keys(replaced.responses)).toHaveLength(1);
   });
 
-  it('resets to an onboarding session', () => {
+  it('resets to a landing session', () => {
     const active = sessionReducer(createSession(), { type: 'setProfile', profile: { name: 'Mira', classLevel: 8 } });
-    expect(sessionReducer(active, { type: 'reset' })).toMatchObject({ phase: 'onboarding', responses: {} });
+    expect(sessionReducer(active, { type: 'reset' })).toMatchObject({ phase: 'landing', responses: {} });
   });
 });
 

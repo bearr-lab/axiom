@@ -10,7 +10,9 @@ interface AxiomSessionContextValue {
   persistenceStatus: PersistenceStatus;
   setProfile(profile: LearnerProfile): void;
   answer(response: ItemResponse): void;
+  undo(): void;
   complete(): void;
+  enterApp(): void;
   startNew(): void;
   eraseLocalData(): void;
 }
@@ -28,11 +30,13 @@ export function AxiomSessionProvider({ children, storage = window.localStorage }
     persistenceStatus,
     setProfile: (profile) => dispatch({ type: 'setProfile', profile }),
     answer: (response) => dispatch({ type: 'answerItem', response }),
+    undo: () => dispatch({ type: 'undoLastResponse' }),
     complete: () => {
       if (!session.profile) throw new Error('A learner profile is required before completion.');
       const result = calculateResult(Object.values(session.responses), session.profile.classLevel, new Date().toISOString());
       dispatch({ type: 'complete', result });
     },
+    enterApp: () => dispatch({ type: 'enterApp' }),
     startNew: () => dispatch({ type: 'reset' }),
     eraseLocalData: () => { erase(); dispatch({ type: 'reset' }); },
   }), [erase, persistenceStatus, session]);
